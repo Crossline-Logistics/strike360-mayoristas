@@ -27,9 +27,10 @@ El export de Claude Design no se sube tal cual. Sobre el `.dc.html` que sale del
    (`hero`, `hero-inner`, `hero-sub`, `card-why`, `stat`) que también se agregan a mano
    sobre el markup del export — el runtime de Claude Design las respeta.
 
-6. Hay que volver a poner `<script src="pixel.js"></script>` en el `<head>`, al lado del de
-   `support.js`. Todo el tracking de Meta vive en `pixel.js` justamente para que un export
-   nuevo no se lo lleve puesto: ahí no hay que tocar nada.
+6. Hay que volver a poner `<script src="pixel.js"></script>` y `<script src="lead.js"></script>`
+   en el `<head>`, al lado del de `support.js`. El tracking de Meta y el envío del lead viven
+   en esos dos archivos justamente para que un export nuevo no se los lleve puestos: adentro
+   de ellos no hay que tocar nada.
 
 Los arreglos de **texto** conviene hacerlos en Claude Design y re-exportar, no acá, porque el
 próximo export los pisa.
@@ -49,3 +50,42 @@ uno propio de la landing: los datos caen en el mismo lugar que los de Tienda Nub
 Los eventos se enganchan por delegación en `document` porque la página la renderiza React
 después de cargar. El `Lead` repite la validación del formulario (comercio, rubro y ciudad;
 el mail es opcional) para no contar envíos que la página rechaza.
+
+
+## El lead a n8n
+
+`lead.js` manda los datos del formulario al webhook de n8n (y de ahí a Kommo). **Falta la URL**:
+está como `WEBHOOK` al principio del archivo y mientras esté vacía no se envía nada, sin romper
+nada. `TOKEN` viaja en el cuerpo para que n8n descarte ruido; no es seguridad, cualquiera que
+abra el archivo lo ve.
+
+Cómo está pensado, según lo que decidió Valentín el 22/09:
+
+- El formulario **sigue abriendo WhatsApp igual**. `lead.js` no lo reemplaza ni lo toca: escucha
+  el envío y manda una copia por atrás.
+- Si el webhook está caído o rechaza el pedido, **la persona no se entera y llega a WhatsApp
+  lo mismo**. Se prefiere perder el registro antes que el contacto.
+- Queda de un solo paso: son cuatro campos y tres obligatorios.
+
+**Lo que hay que saber del lado de n8n:** el envío usa `navigator.sendBeacon` con el cuerpo como
+`text/plain`. Es a propósito — así el navegador lo manda en segundo plano y el pedido no dispara
+el preflight de CORS, que es lo que suele romper estos envíos desde una página estática. La
+contra: **n8n recibe el cuerpo como texto, no como JSON ya parseado**, así que en el workflow hay
+que hacer `JSON.parse($json.body)` antes de usar los campos.
+
+El payload:
+
+```json
+{
+  "comercio": "Juguetería El Globo",
+  "rubro": "Juguetería",
+  "ciudad": "Córdoba, Córdoba",
+  "email": "compras@elglobo.com.ar",
+  "origen": "landing-mayoristas",
+  "url": "https://mayoristas.strike360.com.ar/",
+  "enviado": "2026-09-22T18:02:33.500Z",
+  "token": ""
+}
+```
+
+`email` puede venir vacío: es el único campo opcional.
