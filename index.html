@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="es-AR"><head>
+<html lang="es-AR">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Strike 360 para tu comercio</title>
@@ -344,6 +345,16 @@
   a:hover{color:#d64a14}
   p{margin:0}
   summary::-webkit-details-marker{display:none}
+
+  /* Mobile: el menu del header se apilaba en 4 lineas y se derramaba sobre el hero.
+     En pantalla chica queda el logo y el boton de contacto, que es la accion que importa. */
+  @media (max-width:820px){
+    header nav{display:none!important}
+  }
+  /* Titular del hero: a 375px el minimo de 50px empujaba el CTA fuera de la primera pantalla. */
+  @media (max-width:480px){
+    h1{font-size:clamp(38px,11vw,50px)!important}
+  }
 </style>
 </helmet>
 
@@ -351,7 +362,7 @@
 
 <header id="top" style="position:sticky;top:0;z-index:20;background:var(--paper-a,rgba(255,255,255,.92));backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line,#e7e5e2)">
   <div style="width:min(1160px,100% - 40px);margin-inline:auto;display:flex;align-items:center;justify-content:space-between;gap:20px;height:68px">
-    <a href="#top" aria-label="Strike 360"><img src="img/logo.png" alt="Strike 360" style="height:34px;width:auto;filter:var(--logo-filter,none)"></a>
+    <a href="#top" aria-label="Strike 360"><img src="assets/logo.webp" alt="Strike 360" style="height:34px;width:auto;filter:var(--logo-filter,none)"></a>
     <nav style="display:flex;gap:28px;flex-wrap:wrap;font-size:14px;font-weight:500;color:var(--ink-2,#3a3a3a)">
       <a href="#juego" style="text-decoration:none">El juego</a>
       <a href="#porque" style="text-decoration:none">Por qué se vende</a>
@@ -364,22 +375,22 @@
 
 <section style="position:relative;padding:0;min-height:min(92vh,860px);display:flex;align-items:flex-end;color:#fff;overflow:hidden;background:#111">
   <div style="position:absolute;inset:0" style-after="content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,.25) 45%,rgba(0,0,0,.82) 100%)">
-    <img src="img/hero.jpg" alt="Jugador de Strike 360 saltando junto a la red, en un parque frente al río" style="width:100%;height:100%;object-fit:cover;object-position:62% 30%">
+    <img src="assets/hero.webp" alt="Partido de Strike 360 en la playa, con la red en la arena y el gazebo de la marca detrás" style="width:100%;height:100%;object-fit:cover;object-position:62% 45%">
   </div>
   <div style="position:relative;z-index:1;width:min(1160px,100% - 40px);margin-inline:auto;padding:clamp(140px,16vw,200px) 0 clamp(48px,6vw,80px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:40px;align-items:end">
     <div>
-      <span style="display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#ffb08e" style-before="content:'';display:block;width:22px;height:2px;background:var(--accent,#f0561c)">Para casas de deportes y jugueterías</span>
-      <h1 style="font-family:'Barlow Condensed',Inter,sans-serif;text-transform:uppercase;letter-spacing:-.005em;line-height:.92;margin:18px 0 0;font-weight:800;font-size:var(--h1,clamp(50px,7.6vw,104px));max-width:15ch;text-shadow:0 2px 24px rgba(0,0,0,.25)">El deporte que más crece en el mundo, <em style="font-style:italic;color:var(--accent,#f0561c)">listo para tu vidriera.</em></h1>
-      <p style="font-size:clamp(16px,1.4vw,19px);line-height:1.6;color:#e9e9e9;margin-top:22px;max-width:44ch">Strike 360 es el roundnet argentino. Un kit, dos pelotas, cuatro jugadores y cualquier superficie. Se explica en 20 segundos y se vende todo el año.</p>
+      <span style="display: inline-flex; align-items: center; font-size: 16px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #fff; background: var(--accent,#f0561c); padding: 7px 14px; border-radius: 4px">Para casas de deportes y jugueterías</span>
+      <h1 style="font-family:'Barlow Condensed',Inter,sans-serif;text-transform:uppercase;letter-spacing:-.005em;line-height:.92;margin:18px 0 0;font-weight:800;font-size:var(--h1,clamp(50px,7.6vw,104px));max-width:15ch;text-shadow:0 2px 24px rgba(0,0,0,.25)">El juego / deporte que más crece en el mundo, <em style="font-style: italic; color: var(--accent,#f0561c);">llevá novedad a tu local.</em></h1>
+      <p style="font-size:clamp(16px,1.4vw,19px);line-height:1.6;color:#e9e9e9;margin-top:22px;max-width:44ch"><span style="font-size: 16.0883px;">Strike 360 es un juego / deporte para toda la familia. <br>Ideal para la playa, el parque o para jugar con amigos disfrutando un asado.&nbsp;<br></span><span style="font-size: 16.0883px;">Se explica en 20 segundos, se vende todo el año.</span></p>
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:30px">
         <a href="#contacto" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 26px;border-radius:var(--pill,999px);background:var(--accent,#f0561c);color:#fff;font-weight:600;text-decoration:none;font-size:16px;transition:background .15s,transform .15s" style-hover="background:var(--accent-dark,#d64a14);transform:translateY(-1px);color:#fff">Quiero venderlo</a>
         <a href="#juego" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 26px;border-radius:var(--pill,999px);background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.45);font-weight:600;text-decoration:none;font-size:16px;transition:background .15s,transform .15s" style-hover="background:rgba(255,255,255,.12);border-color:#fff;color:#fff">Ver cómo se juega</a>
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:14px;font-size:14px;color:#d6d6d6;border-left:2px solid var(--accent,#f0561c);padding-left:18px">
-      <div><b style="display:block;color:#fff;font-weight:600">Sin cancha</b>Arena, pasto, cemento o interior.</div>
-      <div><b style="display:block;color:#fff;font-weight:600">Sin instalación</b>Se arma en tres minutos y entra en una mochila.</div>
-      <div><b style="display:block;color:#fff;font-weight:600">Sin explicación larga</b>Tres reglas. El resto lo aprenden jugando.</div>
+      <div><b style="display: block; color: rgb(255, 255, 255); font-weight: 600;">Para todas las edades</b>Ideal para grandes y chicos.</div>
+      <div><span style="display: block;"><font color="#ffffff"><b>Atractivo en la vidriera<br></b></font><span style="color: rgb(214, 214, 214); font-weight: normal;">Fácil de exponer en caja o armado.</span></span></div>
+      <div><b style="display:block;color:#fff;font-weight:600">Fácil de jugar</b>Tres reglas. El resto lo aprenden jugando.</div>
     </div>
   </div>
 </section>
@@ -401,7 +412,45 @@
   </div>
 </div>
 
-<section id="juego" style="padding:var(--sec,clamp(72px,9vw,120px)) 0;background:var(--paper,#ffffff);color:var(--ink,#121212)">
+<section id="producto" style="padding:var(--sec,clamp(72px,9vw,120px)) 0;background:var(--paper,#ffffff);color:var(--ink,#121212)">
+  <div style="width:min(1160px,100% - 40px);margin-inline:auto">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:32px;align-items:end;margin-bottom:clamp(36px,4vw,56px)">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <span style="display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-dark,#d64a14)" style-before="content:'';display:block;width:22px;height:2px;background:var(--accent,#f0561c)">Lo que vendés</span>
+        <h2 style="font-family:'Barlow Condensed',Inter,sans-serif;text-transform:uppercase;letter-spacing:-.005em;line-height:.92;margin:0;font-weight:800;font-size:var(--h2,clamp(40px,5.6vw,72px))">Dos sets. Una caja que se vende sola.</h2>
+      </div>
+      <p style="font-size:clamp(17px,1.5vw,20px);color:var(--ink-2,#3a3a3a);max-width:56ch">Cada set viene completo y listo para jugar: red, bases, pelotas, inflador, mochila y manual.&nbsp;</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:22px">
+      <article style="border:1px solid var(--line,#e7e5e2);border-radius:var(--r,14px);overflow:hidden">
+        <div style="position:relative;background:#fff;padding:26px;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line,#e7e5e2);overflow:hidden"><img src="assets/set-inicial.webp" alt="Set Inicial Strike 360: red, dos pelotas, inflador, mochila y caja" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain"><img src="assets/set-inicial-piezas.webp" alt="Piezas sueltas del Set Inicial Strike 360: red, aros, bases, dos pelotas, inflador, mochila y stickers" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#fff;opacity:0;transition:opacity .28s ease" style-hover="opacity:1"></div>
+        <div style="padding:calc(var(--card-pad,22px) + 2px) calc(var(--card-pad,22px) + 4px) calc(var(--card-pad,22px) + 6px)">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:8px">
+            <h3 style="font-family:Inter,sans-serif;font-size:20px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0">Set Inicial</h3>
+            <span style="font-size:12px;color:var(--muted,#6f6f6f);letter-spacing:.06em;text-transform:uppercase">SKU TY2051</span>
+          </div>
+          <p style="color:var(--ink-2,#3a3a3a);font-size:15px;margin:6px 0 16px">El kit para empezar. Lo que compra una familia, un grupo de amigos o alguien que lo vio en la playa y quiere el suyo.<br><br></p>
+          <div style="border-top:1px solid var(--line,#e7e5e2);padding-top:14px"><img src="assets/set-inicial-medidas-fit.webp" alt="Caja del Set Inicial Strike 360: 54 × 23 × 10 cm, peso 1,5 kg" loading="lazy" style="width:100%;height:auto;aspect-ratio:16/11;object-fit:cover"></div>
+        </div>
+      </article>
+      <article style="border:1px solid var(--line,#e7e5e2);border-radius:var(--r,14px);overflow:hidden">
+        <div style="position:relative;background:#fff;padding:26px;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line,#e7e5e2);overflow:hidden"><img src="assets/set-pro.webp" alt="Set Pro Strike 360: red naranja reforzada, dos pelotas Pro, inflador y mochila" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain"><img src="assets/set-pro-piezas.webp" alt="Piezas sueltas del Set Pro Strike 360: red, aros reforzados, cinco bases, dos pelotas Pro, inflador y mochila grande" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#fff;opacity:0;transition:opacity .28s ease" style-hover="opacity:1"></div>
+        <div style="padding:calc(var(--card-pad,22px) + 2px) calc(var(--card-pad,22px) + 4px) calc(var(--card-pad,22px) + 6px)">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:8px">
+            <h3 style="font-family:Inter,sans-serif;font-size:20px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0">Set Pro</h3>
+            <span style="font-size:12px;color:var(--muted,#6f6f6f);letter-spacing:.06em;text-transform:uppercase">SKU TY360PRO</span>
+          </div>
+          <p style="color:var(--ink-2,#3a3a3a);font-size:15px;margin:6px 0 16px">El kit para competir. Arcos y bases reforzados, pelotas Pro con grip y mochila grande. Ideal para jugadores experimentados, clubes, y/o colegios.</p>
+          <div style="border-top:1px solid var(--line,#e7e5e2);padding-top:14px;display:flex;flex-direction:column;gap:10px"><img src="assets/set-pro-medidas-fit.webp" alt="Caja del Set Pro Strike 360: 59 × 23 × 18 cm, peso 1,8 kg" loading="lazy" style="width:100%;height:auto;aspect-ratio:16/11;object-fit:cover"></div>
+        </div>
+      </article>
+    </div>
+    <div style="margin-top:22px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;border:1px dashed var(--line,#e7e5e2);border-radius:var(--r,14px);padding:18px 22px;font-size:15px;color:var(--ink-2,#3a3a3a)">
+      
+      <p>Lista de precios y condiciones por WhatsApp.</p>
+    </div>
+  </div>
+</section><section id="juego" style="padding:var(--sec,clamp(72px,9vw,120px)) 0;background:var(--paper,#ffffff);color:var(--ink,#121212)">
   <div style="width:min(1160px,100% - 40px);margin-inline:auto">
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:32px;align-items:end;margin-bottom:clamp(36px,4vw,56px)">
       <div style="display:flex;flex-direction:column;gap:16px">
@@ -412,15 +461,15 @@
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:22px">
       <article style="border:1px solid var(--line,#e7e5e2);border-radius:var(--r,14px);overflow:hidden;background:var(--paper,#fff)">
-        <div style="aspect-ratio:4/3;background:#e9e9e9"><img src="img/play-ninos.jpg" alt="Chicos jugando Strike 360 en la playa" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
+        <div style="aspect-ratio:4/3;background:#e9e9e9"><img src="assets/step1.webp" alt="Chicos jugando Strike 360 en la playa" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
         <div style="padding:var(--card-pad,22px) var(--card-pad,22px) calc(var(--card-pad,22px) + 4px);display:flex;flex-direction:column;gap:10px">
           <span style="font-weight:800;font-size:13px;letter-spacing:.1em;color:var(--accent-dark,#d64a14)">01</span>
           <h3 style="font-family:Inter,sans-serif;font-size:20px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0">Dos contra dos, alrededor de una red circular</h3>
-          <p style="color:var(--ink-2,#3a3a3a);font-size:15px">La red va al ras del piso. Los cuatro jugadores se mueven en 360° alrededor de ella: no hay lados ni cancha.</p>
+          <p style="color:var(--ink-2,#3a3a3a);font-size:15px">2 vs 2 alrededor de la red. Es 360°: no hay lados ni cancha.</p>
         </div>
       </article>
       <article style="border:1px solid var(--line,#e7e5e2);border-radius:var(--r,14px);overflow:hidden;background:var(--paper,#fff)">
-        <div style="aspect-ratio:4/3;background:#e9e9e9"><img src="img/play-indoor.jpg" alt="Dos adultos jugando Strike 360 en un gimnasio" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
+        <div style="aspect-ratio:4/3;background:#e9e9e9"><img src="assets/step2.webp" alt="Dos adultos jugando Strike 360 en un gimnasio" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
         <div style="padding:var(--card-pad,22px) var(--card-pad,22px) calc(var(--card-pad,22px) + 4px);display:flex;flex-direction:column;gap:10px">
           <span style="font-weight:800;font-size:13px;letter-spacing:.1em;color:var(--accent-dark,#d64a14)">02</span>
           <h3 style="font-family:Inter,sans-serif;font-size:20px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0">Pegás la pelota contra la red</h3>
@@ -428,111 +477,82 @@
         </div>
       </article>
       <article style="border:1px solid var(--line,#e7e5e2);border-radius:var(--r,14px);overflow:hidden;background:var(--paper,#fff)">
-        <div style="aspect-ratio:4/3;background:#e9e9e9"><img src="img/play-cancha.jpg" alt="Partido de Strike 360 en cancha cubierta" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
+        <div style="aspect-ratio:4/3;background:#e9e9e9"><img src="assets/step3.webp" alt="Partido de Strike 360 en cancha cubierta" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
         <div style="padding:var(--card-pad,22px) var(--card-pad,22px) calc(var(--card-pad,22px) + 4px);display:flex;flex-direction:column;gap:10px">
           <span style="font-weight:800;font-size:13px;letter-spacing:.1em;color:var(--accent-dark,#d64a14)">03</span>
           <h3 style="font-family:Inter,sans-serif;font-size:20px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0">Tienen tres toques para devolverla</h3>
-          <p style="color:var(--ink-2,#3a3a3a);font-size:15px">Si no llegan a pegarla contra la red en tres toques, es punto. Fácil de aprender, difícil de soltar.</p>
+          <p style="color:var(--ink-2,#3a3a3a);font-size:15px">Si no llegan a pegarla contra la red en tres toques, es punto.&nbsp;</p>
         </div>
       </article>
     </div>
-    <div style="margin-top:28px;display:flex;align-items:center;gap:18px;flex-wrap:wrap">
-      <a href="https://www.youtube.com/watch?v=fzRiWkJwg9E" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 26px;border-radius:var(--pill,999px);background:transparent;color:var(--ink,#121212);border:1.5px solid var(--line,#e7e5e2);font-weight:600;text-decoration:none;font-size:16px;transition:background .15s,transform .15s" style-hover="background:var(--paper-2,#f6f5f2);color:var(--ink,#121212)">Ver el video de cómo se juega</a>
-      <span style="color:var(--muted,#6f6f6f);font-size:14px">1 minuto. Es el mismo que podés mostrar en el local.</span>
+    <div style="margin-top:56px;display:flex;justify-content:center">
+      <div style="width:100%;max-width:760px;display:flex;flex-direction:column;gap:12px;text-align:center">
+        <h3 style="font-family:'Barlow Condensed',Inter,sans-serif;text-transform:uppercase;letter-spacing:-.005em;line-height:.95;margin:0 0 6px;font-weight:800;font-size:clamp(28px,3.4vw,44px)">Aprendé cómo se juega</h3>
+        <div style="position:relative;width:100%;aspect-ratio:16/9;border-radius:var(--r,14px);overflow:hidden;background:#000">
+          <sc-if value="{{ videoOn }}" hint-placeholder-val="{{ false }}">
+            <iframe src="https://www.youtube-nocookie.com/embed/fzRiWkJwg9E?autoplay=1&amp;rel=0" title="Cómo se juega Strike 360" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+          </sc-if>
+          <sc-if value="{{ videoOff }}" hint-placeholder-val="{{ true }}">
+            <button type="button" onClick="{{ playVideo }}" aria-label="Reproducir el video de cómo se juega" style="position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;cursor:pointer;background:#000;display:flex;align-items:center;justify-content:center">
+              <img src="https://i.ytimg.com/vi/fzRiWkJwg9E/maxresdefault.jpg" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.82">
+              <span style="position:relative;display:flex;align-items:center;justify-content:center;width:76px;height:76px;border-radius:999px;background:var(--accent,#f0561c);box-shadow:0 8px 32px rgba(0,0,0,.35)">
+                <svg viewBox="0 0 24 24" style="width:28px;height:28px;fill:#fff;margin-left:4px"><path d="M8 5v14l11-7z"></path></svg>
+              </span>
+            </button>
+          </sc-if>
+        </div>
+        <span style="color:var(--muted,#6f6f6f);font-size:14px">1 minuto. Es el mismo que podés mostrar en el local.</span>
+      </div>
     </div>
   </div>
 </section>
+
+
+
+
 
 <section id="porque" style="padding:var(--sec,clamp(72px,9vw,120px)) 0;background:var(--paper-2,#f6f5f2);color:var(--ink,#121212)">
   <div style="width:min(1160px,100% - 40px);margin-inline:auto">
     <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:clamp(36px,4vw,56px)">
       <span style="display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-dark,#d64a14)" style-before="content:'';display:block;width:22px;height:2px;background:var(--accent,#f0561c)">Por qué se vende</span>
-      <h2 style="font-family:'Barlow Condensed',Inter,sans-serif;text-transform:uppercase;letter-spacing:-.005em;line-height:.92;margin:0;font-weight:800;font-size:var(--h2,clamp(40px,5.6vw,72px));max-width:24ch">Un producto que tu cliente entiende en un minuto y usa todo el año.</h2>
+      <h2 style="font-family:'Barlow Condensed',Inter,sans-serif;text-transform:uppercase;letter-spacing:-.005em;line-height:.92;margin:0;font-weight:800;font-size:var(--h2,clamp(40px,5.6vw,72px));max-width:24ch">¿POR QUÉ TENERLO EN TU LOCAL?</h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:1px;background:var(--line,#e7e5e2);border:1px solid var(--line,#e7e5e2);border-radius:var(--r,14px);overflow:hidden">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(max(min(100%,280px),31%),1fr));gap:1px;background:var(--line,#e7e5e2);border:1px solid var(--line,#e7e5e2);border-radius:var(--r,14px);overflow:hidden">
+      
+      
       <div style="background:var(--paper,#fff);padding:calc(var(--card-pad,22px) + 8px) calc(var(--card-pad,22px) + 6px);display:flex;flex-direction:column;gap:12px;min-height:200px">
-        <svg sc-camel-view-box="0 0 24 24" style="width:28px;height:28px;stroke:var(--accent,#f0561c);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><path d="M3 17h18M5 17c0-4 3-7 7-7s7 3 7 7"></path><path d="M12 3v3M4.5 6.5l2 2M19.5 6.5l-2 2"></path></svg>
-        <h3 style="font-family:Inter,sans-serif;font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0">Sin cancha</h3>
+        <svg viewBox="0 0 24 24" style="width:28px;height:28px;stroke:var(--accent,#f0561c);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><rect x="3" y="9" width="18" height="12" rx="2"></rect><path d="M3 13h18M12 9v12M12 9c-2-4-6-4-6-1.5S10 9 12 9zm0 0c2-4 6-4 6-1.5S14 9 12 9z"></path></svg>
+        <h3 style="font-family:Inter,sans-serif;font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0">Regalo ideal para todos</h3>
+        <p style="color:var(--ink-2,#3a3a3a);font-size:15px">Cumpleaños, Día del Niño, Navidad, Reyes y toda la temporada de verano. Una caja que se entiende sola.</p>
+      </div><div style="background:var(--paper,#fff);padding:calc(var(--card-pad,22px) + 8px) calc(var(--card-pad,22px) + 6px);display:flex;flex-direction:column;gap:12px;min-height:200px">
+        <svg viewBox="0 0 24 24" style="width:28px;height:28px;stroke:var(--accent,#f0561c);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><circle cx="8" cy="8" r="3"></circle><circle cx="16.5" cy="9.5" r="2.5"></circle><path d="M2.5 20c0-3.5 2.5-6 5.5-6s5.5 2.5 5.5 6M13.5 19c0-2.6 1.4-4.5 3-4.5s4 1.6 4 4.5"></path></svg>
+        <h3 style="font-family:Inter,sans-serif;font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0">Para todas las edades</h3>
+        <p style="color:var(--ink-2,#3a3a3a);font-size:15px">Chicos, adolescentes y adultos. Equipos mixtos.&nbsp;</p>
+      </div><div style="background:var(--paper,#fff);padding:calc(var(--card-pad,22px) + 8px) calc(var(--card-pad,22px) + 6px);display:flex;flex-direction:column;gap:12px;min-height:200px">
+        <svg viewBox="0 0 24 24" style="width:28px;height:28px;stroke:var(--accent,#f0561c);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><path d="M3 17h18M5 17c0-4 3-7 7-7s7 3 7 7"></path><path d="M12 3v3M4.5 6.5l2 2M19.5 6.5l-2 2"></path></svg>
+        <h3 style="font-family:Inter,sans-serif;font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0">Se juega en todos lados</h3>
         <p style="color:var(--ink-2,#3a3a3a);font-size:15px">Arena, pasto, cemento o interior. Playa, parque, patio, club o gimnasio.</p>
       </div>
+      
       <div style="background:var(--paper,#fff);padding:calc(var(--card-pad,22px) + 8px) calc(var(--card-pad,22px) + 6px);display:flex;flex-direction:column;gap:12px;min-height:200px">
-        <svg sc-camel-view-box="0 0 24 24" style="width:28px;height:28px;stroke:var(--accent,#f0561c);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l3 2M9 2h6"></path></svg>
-        <h3 style="font-family:Inter,sans-serif;font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0">Se arma en tres minutos</h3>
-        <p style="color:var(--ink-2,#3a3a3a);font-size:15px">Todo el equipo entra en la mochila. Se lleva a cualquier lado y no ocupa lugar en casa.</p>
-      </div>
-      <div style="background:var(--paper,#fff);padding:calc(var(--card-pad,22px) + 8px) calc(var(--card-pad,22px) + 6px);display:flex;flex-direction:column;gap:12px;min-height:200px">
-        <svg sc-camel-view-box="0 0 24 24" style="width:28px;height:28px;stroke:var(--accent,#f0561c);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><circle cx="8" cy="8" r="3"></circle><circle cx="16.5" cy="9.5" r="2.5"></circle><path d="M2.5 20c0-3.5 2.5-6 5.5-6s5.5 2.5 5.5 6M13.5 19c0-2.6 1.4-4.5 3-4.5s4 1.6 4 4.5"></path></svg>
-        <h3 style="font-family:Inter,sans-serif;font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0">De 8 a 80 años</h3>
-        <p style="color:var(--ink-2,#3a3a3a);font-size:15px">Chicos, adolescentes y adultos. Equipos mixtos. El que lo prueba una vez, vuelve.</p>
-      </div>
-      <div style="background:var(--paper,#fff);padding:calc(var(--card-pad,22px) + 8px) calc(var(--card-pad,22px) + 6px);display:flex;flex-direction:column;gap:12px;min-height:200px">
-        <svg sc-camel-view-box="0 0 24 24" style="width:28px;height:28px;stroke:var(--accent,#f0561c);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><rect x="3" y="9" width="18" height="12" rx="2"></rect><path d="M3 13h18M12 9v12M12 9c-2-4-6-4-6-1.5S10 9 12 9zm0 0c2-4 6-4 6-1.5S14 9 12 9z"></path></svg>
-        <h3 style="font-family:Inter,sans-serif;font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0">Regalo fácil</h3>
-        <p style="color:var(--ink-2,#3a3a3a);font-size:15px">Cumpleaños, Día del Niño, Navidad, Reyes y toda la temporada de verano. Una caja que se entiende sola.</p>
-      </div>
-      <div style="background:var(--paper,#fff);padding:calc(var(--card-pad,22px) + 8px) calc(var(--card-pad,22px) + 6px);display:flex;flex-direction:column;gap:12px;min-height:200px">
-        <svg sc-camel-view-box="0 0 24 24" style="width:28px;height:28px;stroke:var(--accent,#f0561c);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><rect x="7" y="3" width="10" height="18" rx="2"></rect><path d="M4 4l16 16"></path></svg>
+        <svg viewBox="0 0 24 24" style="width:28px;height:28px;stroke:var(--accent,#f0561c);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l3 2M9 2h6"></path></svg>
+        <h3 style="font-family:Inter,sans-serif;font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0">Fácil de llevar</h3>
+        <p style="color:var(--ink-2,#3a3a3a);font-size:15px">Todo el set entra en la mochila. Se lleva a cualquier lado y no ocupa lugar en casa. Se arma en 3 minutos.</p>
+      </div><div style="background:var(--paper,#fff);padding:calc(var(--card-pad,22px) + 8px) calc(var(--card-pad,22px) + 6px);display:flex;flex-direction:column;gap:12px;min-height:200px">
+        <svg viewBox="0 0 24 24" style="width:28px;height:28px;stroke:var(--accent,#f0561c);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><rect x="7" y="3" width="10" height="18" rx="2"></rect><path d="M4 4l16 16"></path></svg>
         <h3 style="font-family:Inter,sans-serif;font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0">Los saca de la pantalla</h3>
         <p style="color:var(--ink-2,#3a3a3a);font-size:15px">El argumento que las familias compran: actividad al aire libre, en equipo y sin tiempos muertos.</p>
       </div>
       <div style="background:var(--paper,#fff);padding:calc(var(--card-pad,22px) + 8px) calc(var(--card-pad,22px) + 6px);display:flex;flex-direction:column;gap:12px;min-height:200px">
-        <svg sc-camel-view-box="0 0 24 24" style="width:28px;height:28px;stroke:var(--accent,#f0561c);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><path d="M7 4h10v4a5 5 0 0 1-10 0zM7 6H4a3 3 0 0 0 3 5M17 6h3a3 3 0 0 1-3 5M12 13v4M8 21h8M9 17h6"></path></svg>
+        <svg viewBox="0 0 24 24" style="width:28px;height:28px;stroke:var(--accent,#f0561c);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><path d="M7 4h10v4a5 5 0 0 1-10 0zM7 6H4a3 3 0 0 0 3 5M17 6h3a3 3 0 0 1-3 5M12 13v4M8 21h8M9 17h6"></path></svg>
         <h3 style="font-family:Inter,sans-serif;font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0">Comunidad activa</h3>
         <p style="color:var(--ink-2,#3a3a3a);font-size:15px">Torneos, clínicas en colegios y redes con contenido nuevo todas las semanas. No es una moda de una temporada.</p>
       </div>
     </div>
   </div>
-</section>
-
-<section id="producto" style="padding:var(--sec,clamp(72px,9vw,120px)) 0;background:var(--paper,#ffffff);color:var(--ink,#121212)">
-  <div style="width:min(1160px,100% - 40px);margin-inline:auto">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:32px;align-items:end;margin-bottom:clamp(36px,4vw,56px)">
-      <div style="display:flex;flex-direction:column;gap:16px">
-        <span style="display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-dark,#d64a14)" style-before="content:'';display:block;width:22px;height:2px;background:var(--accent,#f0561c)">Lo que vendés</span>
-        <h2 style="font-family:'Barlow Condensed',Inter,sans-serif;text-transform:uppercase;letter-spacing:-.005em;line-height:.92;margin:0;font-weight:800;font-size:var(--h2,clamp(40px,5.6vw,72px))">Dos sets. Una caja que se vende sola.</h2>
-      </div>
-      <p style="font-size:clamp(17px,1.5vw,20px);color:var(--ink-2,#3a3a3a);max-width:56ch">Cada set viene completo y listo para jugar: red, bases, pelotas, inflador, mochila y manual. Sin partes sueltas ni pedidos aparte.</p>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:22px">
-      <article style="border:1px solid var(--line,#e7e5e2);border-radius:var(--r,14px);overflow:hidden">
-        <div style="background:#fff;padding:26px;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line,#e7e5e2)"><img src="img/set-inicial.jpg" alt="Set Inicial Strike 360: red, dos pelotas, inflador, mochila y caja" loading="lazy" style="max-height:100%;object-fit:contain"></div>
-        <div style="padding:calc(var(--card-pad,22px) + 2px) calc(var(--card-pad,22px) + 4px) calc(var(--card-pad,22px) + 6px)">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:8px">
-            <h3 style="font-family:Inter,sans-serif;font-size:20px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0">Set Inicial</h3>
-            <span style="font-size:12px;color:var(--muted,#6f6f6f);letter-spacing:.06em;text-transform:uppercase">SKU TY2051</span>
-          </div>
-          <p style="color:var(--ink-2,#3a3a3a);font-size:15px;margin:6px 0 16px">El kit para empezar. Lo que compra una familia, un grupo de amigos o alguien que lo vio en la playa y quiere el suyo.</p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;font-size:14px;border-top:1px solid var(--line,#e7e5e2);padding-top:14px">
-            <div><span style="color:var(--muted,#6f6f6f);display:block;font-size:12px">Caja</span>23 × 10 × 54 cm</div>
-            <div><span style="color:var(--muted,#6f6f6f);display:block;font-size:12px">Peso</span>1,6 kg</div>
-          </div>
-        </div>
-      </article>
-      <article style="border:1px solid var(--line,#e7e5e2);border-radius:var(--r,14px);overflow:hidden">
-        <div style="background:#fff;padding:26px;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line,#e7e5e2)"><img src="img/set-pro.jpg" alt="Set Pro Strike 360: red naranja reforzada, dos pelotas Pro, inflador y mochila" loading="lazy" style="max-height:100%;object-fit:contain"></div>
-        <div style="padding:calc(var(--card-pad,22px) + 2px) calc(var(--card-pad,22px) + 4px) calc(var(--card-pad,22px) + 6px)">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:8px">
-            <h3 style="font-family:Inter,sans-serif;font-size:20px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0">Set Pro</h3>
-            <span style="font-size:12px;color:var(--muted,#6f6f6f);letter-spacing:.06em;text-transform:uppercase">SKU TY360PRO</span>
-          </div>
-          <p style="color:var(--ink-2,#3a3a3a);font-size:15px;margin:6px 0 16px">El kit para competir. Red reforzada, pelotas Pro y mochila grande. Para clubes, colegios y el que ya juega.</p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;font-size:14px;border-top:1px solid var(--line,#e7e5e2);padding-top:14px">
-            <div><span style="color:var(--muted,#6f6f6f);display:block;font-size:12px">Caja</span>23 × 18 × 59,5 cm</div>
-            <div><span style="color:var(--muted,#6f6f6f);display:block;font-size:12px">Peso</span>1,8 kg</div>
-          </div>
-        </div>
-      </article>
-    </div>
-    <div style="margin-top:22px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;border:1px dashed var(--line,#e7e5e2);border-radius:var(--r,14px);padding:18px 22px;font-size:15px;color:var(--ink-2,#3a3a3a)">
-      <p><b style="color:var(--ink,#121212)">Accesorios y reposición:</b> pelotas de repuesto, inflador, mochila y remeras. Rotan solos una vez que el juego está en la calle.</p>
-      <p>Lista de precios y condiciones por WhatsApp.</p>
-    </div>
-  </div>
-</section>
-
-<section id="respaldo" style="padding:var(--sec,clamp(72px,9vw,120px)) 0;background:#121212;color:#fff;position:relative;overflow:hidden">
+</section><section id="respaldo" style="padding:var(--sec,clamp(72px,9vw,120px)) 0;background:#121212;color:#fff;position:relative;overflow:hidden">
   <div style="position:absolute;inset:0;z-index:0" style-after="content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,18,18,.96) 0%,rgba(18,18,18,.82) 45%,rgba(18,18,18,.35) 100%)">
-    <img src="img/accion-pro.jpg" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;opacity:.42">
+    <img src="assets/respaldo.webp" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;opacity:.42">
   </div>
   <div style="position:relative;z-index:1;width:min(1160px,100% - 40px);margin-inline:auto">
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:48px;align-items:center">
@@ -562,21 +582,24 @@
           <div style="display:grid;grid-template-columns:52px 1fr;gap:16px;padding:20px 0;border-top:1px solid var(--line,#e7e5e2);border-bottom:1px solid var(--line,#e7e5e2)"><b style="font-weight:800;font-size:28px;letter-spacing:-.03em;color:var(--accent,#f0561c);line-height:1">3</b><p style="color:var(--ink-2,#3a3a3a);font-size:15px"><strong style="display:block;color:var(--ink,#121212);font-weight:600;margin-bottom:2px">Recibís el pedido en tu local</strong>Envíos a todo el país, con stock permanente en Buenos Aires.</p></div>
         </div>
       </div>
-      <form sc-camel-on-submit="{{ onSubmit }}" style="background:var(--paper-2,#f6f5f2);border:1px solid var(--line,#e7e5e2);border-radius:var(--r,14px);padding:clamp(24px,3vw,36px)">
+      <form onSubmit="{{ onSubmit }}" style="background:var(--paper-2,#f6f5f2);border:1px solid var(--line,#e7e5e2);border-radius:var(--r,14px);padding:clamp(24px,3vw,36px)">
         <h3 style="font-family:Inter,sans-serif;font-size:20px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0 0 6px">Quiero vender Strike 360</h3>
         <p style="color:var(--muted,#6f6f6f);font-size:14px;margin-bottom:22px">Al enviar se abre WhatsApp con tu mensaje armado.</p>
         <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:16px">
           <label for="comercio" style="font-size:13px;font-weight:600">Nombre del comercio</label>
-          <input id="comercio" name="comercio" type="text" autocomplete="organization" placeholder="Ej.: Deportes Belgrano" style="width:100%;padding:14px;border:1px solid var(--field-line,#d9d6d1);border-radius:10px;background:var(--field-bg,#fff);font:inherit;font-size:16px;color:var(--ink,#121212);appearance:none" style-focus="outline:2px solid var(--accent,#f0561c);outline-offset:1px;border-color:transparent">
+          <input id="comercio" name="comercio" type="text" autocomplete="organization" placeholder="Ej.: Juguetería Diversion" style="width:100%;padding:14px;border:1px solid var(--field-line,#d9d6d1);border-radius:10px;background:var(--field-bg,#fff);font:inherit;font-size:16px;color:var(--ink,#121212);appearance:none" style-focus="outline:2px solid var(--accent,#f0561c);outline-offset:1px;border-color:transparent">
+        </div><div style="display:flex;flex-direction:column;gap:6px;margin-bottom:16px">
+          <label for="email" style="font-size:13px;font-weight:600">Correo electrónico</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="Ej.: jugueteria@mail.com" style="width:100%;padding:14px;border:1px solid var(--field-line,#d9d6d1);border-radius:10px;background:var(--field-bg,#fff);font:inherit;font-size:16px;color:var(--ink,#121212);appearance:none" style-focus="outline:2px solid var(--accent,#f0561c);outline-offset:1px;border-color:transparent">
         </div>
         <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:16px">
           <label for="rubro" style="font-size:13px;font-weight:600">Rubro</label>
-          <sc-raw-select id="rubro" name="rubro" sc-camel-default-value="" style="width:100%;padding:14px;border:1px solid var(--field-line,#d9d6d1);border-radius:10px;background:var(--field-bg,#fff);font:inherit;font-size:16px;color:var(--ink,#121212);appearance:none" style-focus="outline:2px solid var(--accent,#f0561c);outline-offset:1px;border-color:transparent">
+          <select id="rubro" name="rubro" defaultValue="" style="width:100%;padding:14px;border:1px solid var(--field-line,#d9d6d1);border-radius:10px;background:var(--field-bg,#fff);font:inherit;font-size:16px;color:var(--ink,#121212);appearance:none" style-focus="outline:2px solid var(--accent,#f0561c);outline-offset:1px;border-color:transparent">
             <option value="" disabled="">Elegí una opción</option>
             <option>Casa de deportes</option>
             <option>Juguetería</option>
             <option>Otro</option>
-          </sc-raw-select>
+          </select>
         </div>
         <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:16px">
           <label for="ciudad" style="font-size:13px;font-weight:600">Ciudad y provincia</label>
@@ -609,27 +632,24 @@
       </details>
       <details style="border-top:1px solid var(--line,#e7e5e2)">
         <summary style="cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font-weight:600;font-size:17px" style-after="content:'+';font-size:24px;font-weight:600;color:var(--accent,#f0561c)">¿Hacen envíos al interior?</summary>
-        <p style="padding:0 0 22px;color:var(--ink-2,#3a3a3a);max-width:64ch">Sí, a todo el país.</p>
+        <p style="padding:0 0 22px;color:var(--ink-2,#3a3a3a);max-width:64ch">Sí, realizamos envíos a todo el país.</p>
       </details>
       <details style="border-top:1px solid var(--line,#e7e5e2)">
         <summary style="cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font-weight:600;font-size:17px" style-after="content:'+';font-size:24px;font-weight:600;color:var(--accent,#f0561c)">¿Tienen material para el local?</summary>
-        <p style="padding:0 0 22px;color:var(--ink-2,#3a3a3a);max-width:64ch">Sí: material gráfico, fotos y videos para redes y pantallas. Lo coordinamos con tu primer pedido.</p>
+        <p style="padding:0 0 22px;color:var(--ink-2,#3a3a3a);max-width:64ch">Sí: fotos y videos para redes y pantallas. Lo coordinamos con tu primer pedido.</p>
       </details>
       <details style="border-top:1px solid var(--line,#e7e5e2)">
         <summary style="cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font-weight:600;font-size:17px" style-after="content:'+';font-size:24px;font-weight:600;color:var(--accent,#f0561c)">¿Cómo repongo stock?</summary>
         <p style="padding:0 0 22px;color:var(--ink-2,#3a3a3a);max-width:64ch">Por el mismo WhatsApp. Trabajamos con stock permanente en Buenos Aires.</p>
       </details>
-      <details style="border-top:1px solid var(--line,#e7e5e2);border-bottom:1px solid var(--line,#e7e5e2)">
-        <summary style="cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font-weight:600;font-size:17px" style-after="content:'+';font-size:24px;font-weight:600;color:var(--accent,#f0561c)">¿El producto tiene garantía?</summary>
-        <p style="padding:0 0 22px;color:var(--ink-2,#3a3a3a);max-width:64ch">Sí. Cualquier falla de fabricación se resuelve directo con nosotros, sin que tengas que hacerte cargo vos.</p>
-      </details>
+      
     </div>
   </div>
 </section>
 
 <section style="background:var(--accent,#f0561c);color:#fff;text-align:center;padding:clamp(72px,9vw,110px) 0">
   <div style="width:min(1160px,100% - 40px);margin-inline:auto">
-    <img src="img/logo.png" alt="Strike 360" style="height:64px;width:auto;margin:0 auto 28px;filter:brightness(0) invert(1)">
+    <img src="assets/logo.webp" alt="Strike 360" style="height:64px;width:auto;margin:0 auto 28px;filter:brightness(0) invert(1)">
     <h2 style="font-family:'Barlow Condensed',Inter,sans-serif;text-transform:uppercase;letter-spacing:-.005em;line-height:.92;margin:0;font-weight:800;color:#fff;font-size:clamp(34px,4.6vw,56px)">Sumate al movimiento Strike.</h2>
     <p style="color:#ffe1d3;margin:16px auto 30px;max-width:52ch;font-size:17px">Un producto que se explica en 20 segundos, se vende todo el año y ya está en más de 50 comercios del país.</p>
     <a href="#contacto" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 26px;border-radius:var(--pill,999px);background:#fff;color:#121212;font-weight:600;text-decoration:none;font-size:16px;transition:background .15s,transform .15s" style-hover="background:#f2f2f2;transform:translateY(-1px);color:#121212">Quiero venderlo</a>
@@ -649,7 +669,7 @@
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script="" data-props="{
+<script type="text/x-dc" data-dc-script data-props="{
   &quot;mood&quot;: {
     &quot;editor&quot;: &quot;enum&quot;,
     &quot;options&quot;: [&quot;Papel&quot;, &quot;Arena&quot;, &quot;Nocturno&quot;],
@@ -705,7 +725,7 @@ const DENSITIES = {
 };
 
 class Component extends DCLogic {
-  state = { invalid: false };
+  state = { invalid: false, videoOn: false };
 
   renderVals() {
     const accent = this.props.accent ?? '#f0561c';
@@ -721,19 +741,22 @@ class Component extends DCLogic {
     return {
       theme,
       invalid: this.state.invalid,
+      videoOn: this.state.videoOn,
+      videoOff: !this.state.videoOn,
+      playVideo: () => this.setState({ videoOn: true }),
       onSubmit: e => {
         e.preventDefault();
         const f = e.currentTarget;
         const c = f.comercio.value.trim(), r = f.rubro.value, z = f.ciudad.value.trim();
+        const mail = f.email ? f.email.value.trim() : '';
         if (!c || !r || !z) { this.setState({ invalid: true }); return; }
         this.setState({ invalid: false });
-        const msg = `Hola, soy de ${c} (${r.toLowerCase()}) en ${z}. Quiero info para vender Strike 360.`;
+        const msg = `Hola, soy de ${c} (${r.toLowerCase()}) en ${z}. Quiero info para vender Strike 360.` + (mail ? ` Mi mail es ${mail}.` : '');
         window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
       }
     };
   }
 }
 </script>
-
-
-</body></html>
+</body>
+</html>
