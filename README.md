@@ -20,8 +20,12 @@ El export de Claude Design no se sube tal cual. Sobre el `.dc.html` que sale del
    `-lossless` para el logo. Después hay que cambiar las extensiones en el HTML.
 4. Del zip sólo se copian los assets que el HTML referencia; `uploads/`, `scraps/` y las variantes
    sin usar quedan afuera.
-5. Al final del `<style>` del `helmet` hay dos media queries agregadas a mano para mobile
-   (el menú del header y el tamaño del titular). Están comentadas en el archivo.
+5. Al final del `<style>` del `helmet` hay un bloque de ajustes de mobile agregado a mano,
+   comentado regla por regla: menú del header, alto y encuadre del hero, capa de contraste
+   sobre la foto, alto de las tarjetas, alineación de los números de respaldo, `box-sizing`
+   de los campos del formulario y tamaño del titular. Se apoyan en cinco clases
+   (`hero`, `hero-inner`, `hero-sub`, `card-why`, `stat`) que también se agregan a mano
+   sobre el markup del export — el runtime de Claude Design las respeta.
 
 Los arreglos de **texto** conviene hacerlos en Claude Design y re-exportar, no acá, porque el
 próximo export los pisa.

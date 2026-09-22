@@ -346,14 +346,45 @@
   p{margin:0}
   summary::-webkit-details-marker{display:none}
 
-  /* Mobile: el menu del header se apilaba en 4 lineas y se derramaba sobre el hero.
-     En pantalla chica queda el logo y el boton de contacto, que es la accion que importa. */
+  /* ---- Ajustes de mobile agregados a mano sobre el export (ver README) ---- */
+
+  /* Los campos del formulario no heredaban border-box y el padding los hacia
+     desbordar la tarjeta en pantalla chica. */
+  input,select,textarea{box-sizing:border-box;max-width:100%}
+
   @media (max-width:820px){
+    /* El menu del header se apilaba en 4 lineas y se derramaba sobre el hero.
+       En pantalla chica queda el logo y el boton, que es la accion que importa. */
     header nav{display:none!important}
+
+    /* Hero: 140px de aire arriba dejaban media pantalla de cielo vacio. */
+    .hero{min-height:74vh!important}
+    .hero-inner{padding-top:72px!important}
+
+    /* El degradado del diseno es suave en el medio: en vertical el titular cae
+       justo sobre la carpa naranja y se perdia. Esta capa extra solo es de mobile. */
+    .hero::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+      background:linear-gradient(180deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,.38) 38%,rgba(0,0,0,.86) 100%)}
+
+    /* Las tarjetas de "por que" tienen un alto minimo pensado para la grilla de
+       escritorio; apiladas dejaban un hueco blanco debajo de cada texto. */
+    .card-why{min-height:0!important}
+
+    /* Los tres numeros de respaldo: apilados, el primero no llevaba sangria ni
+       borde y la columna "auto" daba un ancho distinto por bloque, asi que cada
+       texto arrancaba en otro lugar. Columna fija y el borde pasa a ser horizontal. */
+    .stat{grid-template-columns:96px 1fr!important;padding:22px 0!important;border-left:0!important}
+    .stat + .stat{border-top:1px solid var(--line,#e7e5e2)!important}
   }
-  /* Titular del hero: a 375px el minimo de 50px empujaba el CTA fuera de la primera pantalla. */
+
   @media (max-width:480px){
+    /* El titular, con el texto nuevo mas largo, empujaba el CTA fuera de la
+       primera pantalla. */
     h1{font-size:clamp(38px,11vw,50px)!important}
+
+    /* La bajada trae dos <br> del diseno de escritorio que en mobile partian
+       las oraciones por la mitad. */
+    .hero-sub br{display:none!important}
   }
 </style>
 </helmet>
@@ -373,15 +404,15 @@
   </div>
 </header>
 
-<section style="position:relative;padding:0;min-height:min(92vh,860px);display:flex;align-items:flex-end;color:#fff;overflow:hidden;background:#111">
+<section class="hero" style="position:relative;padding:0;min-height:min(92vh,860px);display:flex;align-items:flex-end;color:#fff;overflow:hidden;background:#111">
   <div style="position:absolute;inset:0" style-after="content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,.25) 45%,rgba(0,0,0,.82) 100%)">
     <img src="assets/hero.webp" alt="Partido de Strike 360 en la playa, con la red en la arena y el gazebo de la marca detrás" style="width:100%;height:100%;object-fit:cover;object-position:62% 45%">
   </div>
-  <div style="position:relative;z-index:1;width:min(1160px,100% - 40px);margin-inline:auto;padding:clamp(140px,16vw,200px) 0 clamp(48px,6vw,80px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:40px;align-items:end">
+  <div class="hero-inner" style="position:relative;z-index:1;width:min(1160px,100% - 40px);margin-inline:auto;padding:clamp(140px,16vw,200px) 0 clamp(48px,6vw,80px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:40px;align-items:end">
     <div>
       <span style="display: inline-flex; align-items: center; font-size: 16px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #fff; background: var(--accent,#f0561c); padding: 7px 14px; border-radius: 4px">Para casas de deportes y jugueterías</span>
       <h1 style="font-family:'Barlow Condensed',Inter,sans-serif;text-transform:uppercase;letter-spacing:-.005em;line-height:.92;margin:18px 0 0;font-weight:800;font-size:var(--h1,clamp(50px,7.6vw,104px));max-width:15ch;text-shadow:0 2px 24px rgba(0,0,0,.25)">El juego / deporte que más crece en el mundo, <em style="font-style: italic; color: var(--accent,#f0561c);">llevá novedad a tu local.</em></h1>
-      <p style="font-size:clamp(16px,1.4vw,19px);line-height:1.6;color:#e9e9e9;margin-top:22px;max-width:44ch"><span style="font-size: 16.0883px;">Strike 360 es un juego / deporte para toda la familia. <br>Ideal para la playa, el parque o para jugar con amigos disfrutando un asado.&nbsp;<br></span><span style="font-size: 16.0883px;">Se explica en 20 segundos, se vende todo el año.</span></p>
+      <p class="hero-sub" style="font-size:clamp(16px,1.4vw,19px);line-height:1.6;color:#e9e9e9;margin-top:22px;max-width:44ch"><span style="font-size: 16.0883px;">Strike 360 es un juego / deporte para toda la familia. <br>Ideal para la playa, el parque o para jugar con amigos disfrutando un asado.&nbsp;<br></span><span style="font-size: 16.0883px;">Se explica en 20 segundos, se vende todo el año.</span></p>
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:30px">
         <a href="#contacto" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 26px;border-radius:var(--pill,999px);background:var(--accent,#f0561c);color:#fff;font-weight:600;text-decoration:none;font-size:16px;transition:background .15s,transform .15s" style-hover="background:var(--accent-dark,#d64a14);transform:translateY(-1px);color:#fff">Quiero venderlo</a>
         <a href="#juego" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 26px;border-radius:var(--pill,999px);background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.45);font-weight:600;text-decoration:none;font-size:16px;transition:background .15s,transform .15s" style-hover="background:rgba(255,255,255,.12);border-color:#fff;color:#fff">Ver cómo se juega</a>
@@ -397,15 +428,15 @@
 
 <div style="position:relative;z-index:2;background:var(--paper,#ffffff);border-bottom:1px solid var(--line,#e7e5e2)">
   <div style="width:min(1160px,100% - 40px);margin-inline:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))">
-    <div style="padding:28px 26px 28px 0;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center">
+    <div class="stat" style="padding:28px 26px 28px 0;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center">
       <b style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(44px,4.4vw,64px);font-weight:800;letter-spacing:-.01em;line-height:.9;font-style:italic">20<i style="font-style:inherit;color:var(--accent,#f0561c)">17</i></b>
       <span style="font-size:14px;color:var(--ink-2,#3a3a3a);line-height:1.35;max-width:22ch">En Argentina desde</span>
     </div>
-    <div style="padding:28px 26px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;border-left:1px solid var(--line,#e7e5e2)">
+    <div class="stat" style="padding:28px 26px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;border-left:1px solid var(--line,#e7e5e2)">
       <b style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(44px,4.4vw,64px);font-weight:800;letter-spacing:-.01em;line-height:.9;font-style:italic">+<i style="font-style:inherit;color:var(--accent,#f0561c)">50</i></b>
       <span style="font-size:14px;color:var(--ink-2,#3a3a3a);line-height:1.35;max-width:22ch">comercios ya lo venden</span>
     </div>
-    <div style="padding:28px 26px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;border-left:1px solid var(--line,#e7e5e2)">
+    <div class="stat" style="padding:28px 26px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;border-left:1px solid var(--line,#e7e5e2)">
       <b style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(44px,4.4vw,64px);font-weight:800;letter-spacing:-.01em;line-height:.9;font-style:italic">20<i style="font-style:inherit;color:var(--accent,#f0561c)">25</i></b>
       <span style="font-size:14px;color:var(--ink-2,#3a3a3a);line-height:1.35;max-width:22ch">Organizamos el Panamericano de Roundnet</span>
     </div>
@@ -520,30 +551,30 @@
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(max(min(100%,280px),31%),1fr));gap:1px;background:var(--line,#e7e5e2);border:1px solid var(--line,#e7e5e2);border-radius:var(--r,14px);overflow:hidden">
       
       
-      <div style="background:var(--paper,#fff);padding:calc(var(--card-pad,22px) + 8px) calc(var(--card-pad,22px) + 6px);display:flex;flex-direction:column;gap:12px;min-height:200px">
+      <div class="card-why" style="background:var(--paper,#fff);padding:calc(var(--card-pad,22px) + 8px) calc(var(--card-pad,22px) + 6px);display:flex;flex-direction:column;gap:12px;min-height:200px">
         <svg viewBox="0 0 24 24" style="width:28px;height:28px;stroke:var(--accent,#f0561c);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><rect x="3" y="9" width="18" height="12" rx="2"></rect><path d="M3 13h18M12 9v12M12 9c-2-4-6-4-6-1.5S10 9 12 9zm0 0c2-4 6-4 6-1.5S14 9 12 9z"></path></svg>
         <h3 style="font-family:Inter,sans-serif;font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0">Regalo ideal para todos</h3>
         <p style="color:var(--ink-2,#3a3a3a);font-size:15px">Cumpleaños, Día del Niño, Navidad, Reyes y toda la temporada de verano. Una caja que se entiende sola.</p>
-      </div><div style="background:var(--paper,#fff);padding:calc(var(--card-pad,22px) + 8px) calc(var(--card-pad,22px) + 6px);display:flex;flex-direction:column;gap:12px;min-height:200px">
+      </div><div class="card-why" style="background:var(--paper,#fff);padding:calc(var(--card-pad,22px) + 8px) calc(var(--card-pad,22px) + 6px);display:flex;flex-direction:column;gap:12px;min-height:200px">
         <svg viewBox="0 0 24 24" style="width:28px;height:28px;stroke:var(--accent,#f0561c);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><circle cx="8" cy="8" r="3"></circle><circle cx="16.5" cy="9.5" r="2.5"></circle><path d="M2.5 20c0-3.5 2.5-6 5.5-6s5.5 2.5 5.5 6M13.5 19c0-2.6 1.4-4.5 3-4.5s4 1.6 4 4.5"></path></svg>
         <h3 style="font-family:Inter,sans-serif;font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0">Para todas las edades</h3>
         <p style="color:var(--ink-2,#3a3a3a);font-size:15px">Chicos, adolescentes y adultos. Equipos mixtos.&nbsp;</p>
-      </div><div style="background:var(--paper,#fff);padding:calc(var(--card-pad,22px) + 8px) calc(var(--card-pad,22px) + 6px);display:flex;flex-direction:column;gap:12px;min-height:200px">
+      </div><div class="card-why" style="background:var(--paper,#fff);padding:calc(var(--card-pad,22px) + 8px) calc(var(--card-pad,22px) + 6px);display:flex;flex-direction:column;gap:12px;min-height:200px">
         <svg viewBox="0 0 24 24" style="width:28px;height:28px;stroke:var(--accent,#f0561c);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><path d="M3 17h18M5 17c0-4 3-7 7-7s7 3 7 7"></path><path d="M12 3v3M4.5 6.5l2 2M19.5 6.5l-2 2"></path></svg>
         <h3 style="font-family:Inter,sans-serif;font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0">Se juega en todos lados</h3>
         <p style="color:var(--ink-2,#3a3a3a);font-size:15px">Arena, pasto, cemento o interior. Playa, parque, patio, club o gimnasio.</p>
       </div>
       
-      <div style="background:var(--paper,#fff);padding:calc(var(--card-pad,22px) + 8px) calc(var(--card-pad,22px) + 6px);display:flex;flex-direction:column;gap:12px;min-height:200px">
+      <div class="card-why" style="background:var(--paper,#fff);padding:calc(var(--card-pad,22px) + 8px) calc(var(--card-pad,22px) + 6px);display:flex;flex-direction:column;gap:12px;min-height:200px">
         <svg viewBox="0 0 24 24" style="width:28px;height:28px;stroke:var(--accent,#f0561c);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l3 2M9 2h6"></path></svg>
         <h3 style="font-family:Inter,sans-serif;font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0">Fácil de llevar</h3>
         <p style="color:var(--ink-2,#3a3a3a);font-size:15px">Todo el set entra en la mochila. Se lleva a cualquier lado y no ocupa lugar en casa. Se arma en 3 minutos.</p>
-      </div><div style="background:var(--paper,#fff);padding:calc(var(--card-pad,22px) + 8px) calc(var(--card-pad,22px) + 6px);display:flex;flex-direction:column;gap:12px;min-height:200px">
+      </div><div class="card-why" style="background:var(--paper,#fff);padding:calc(var(--card-pad,22px) + 8px) calc(var(--card-pad,22px) + 6px);display:flex;flex-direction:column;gap:12px;min-height:200px">
         <svg viewBox="0 0 24 24" style="width:28px;height:28px;stroke:var(--accent,#f0561c);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><rect x="7" y="3" width="10" height="18" rx="2"></rect><path d="M4 4l16 16"></path></svg>
         <h3 style="font-family:Inter,sans-serif;font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0">Los saca de la pantalla</h3>
         <p style="color:var(--ink-2,#3a3a3a);font-size:15px">El argumento que las familias compran: actividad al aire libre, en equipo y sin tiempos muertos.</p>
       </div>
-      <div style="background:var(--paper,#fff);padding:calc(var(--card-pad,22px) + 8px) calc(var(--card-pad,22px) + 6px);display:flex;flex-direction:column;gap:12px;min-height:200px">
+      <div class="card-why" style="background:var(--paper,#fff);padding:calc(var(--card-pad,22px) + 8px) calc(var(--card-pad,22px) + 6px);display:flex;flex-direction:column;gap:12px;min-height:200px">
         <svg viewBox="0 0 24 24" style="width:28px;height:28px;stroke:var(--accent,#f0561c);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><path d="M7 4h10v4a5 5 0 0 1-10 0zM7 6H4a3 3 0 0 0 3 5M17 6h3a3 3 0 0 1-3 5M12 13v4M8 21h8M9 17h6"></path></svg>
         <h3 style="font-family:Inter,sans-serif;font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0">Comunidad activa</h3>
         <p style="color:var(--ink-2,#3a3a3a);font-size:15px">Torneos, clínicas en colegios y redes con contenido nuevo todas las semanas. No es una moda de una temporada.</p>
