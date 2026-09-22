@@ -27,5 +27,25 @@ El export de Claude Design no se sube tal cual. Sobre el `.dc.html` que sale del
    (`hero`, `hero-inner`, `hero-sub`, `card-why`, `stat`) que también se agregan a mano
    sobre el markup del export — el runtime de Claude Design las respeta.
 
+6. Hay que volver a poner `<script src="pixel.js"></script>` en el `<head>`, al lado del de
+   `support.js`. Todo el tracking de Meta vive en `pixel.js` justamente para que un export
+   nuevo no se lo lleve puesto: ahí no hay que tocar nada.
+
 Los arreglos de **texto** conviene hacerlos en Claude Design y re-exportar, no acá, porque el
 próximo export los pisa.
+
+## Tracking
+
+Meta Pixel `363383224585035` ("Píxel de Strike 360 - Oficial"), el de la cuenta de Strike, no
+uno propio de la landing: los datos caen en el mismo lugar que los de Tienda Nube.
+
+| Evento | Cuándo |
+|---|---|
+| `PageView` | Al cargar |
+| `Lead` | Envío del formulario que pasa la validación; lleva el rubro en `content_category` |
+| `Contact` | Click en el mail mayorista (y en un enlace a WhatsApp, si alguna vez se agrega uno suelto) |
+| `ClickCTA` | Click en los tres botones que bajan al formulario. Evento propio, no es conversión |
+
+Los eventos se enganchan por delegación en `document` porque la página la renderiza React
+después de cargar. El `Lead` repite la validación del formulario (comercio, rubro y ciudad;
+el mail es opcional) para no contar envíos que la página rechaza.
