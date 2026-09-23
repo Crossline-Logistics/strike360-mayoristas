@@ -20,14 +20,36 @@ fbq('track', 'PageView');
 
 /* Lead: el envio del formulario, que es lo que abre WhatsApp con el mensaje armado.
    Se repite la validacion del componente (comercio, rubro y ciudad son los obligatorios;
-   el mail es opcional) para no contar como lead un intento que la pagina rechaza. */
+   el mail es opcional) para no contar como lead un intento que la pagina rechaza.
+
+   FormularioIncompleto: el caso contrario, alguien que apreto "Enviar por WhatsApp" y la
+   pagina lo freno. No es una conversion: sirve para ver si hay un campo que traba a la
+   gente. Se manda una sola vez por carga de pagina, y con el primer tropiezo, que es el
+   que dice donde se frena de verdad; si no, alguien que insiste cinco veces infla el
+   numero y parece un problema mas grande de lo que es. */
+var yaAvisoIncompleto = false;
+
 document.addEventListener('submit', function (e) {
   var f = e.target;
   if (!f || f.tagName !== 'FORM' || !f.comercio) return;
   var comercio = (f.comercio.value || '').trim();
   var rubro = f.rubro ? f.rubro.value : '';
   var ciudad = f.ciudad ? (f.ciudad.value || '').trim() : '';
-  if (!comercio || !rubro || !ciudad) return;
+
+  if (!comercio || !rubro || !ciudad) {
+    if (yaAvisoIncompleto) return;
+    yaAvisoIncompleto = true;
+    var faltan = [];
+    if (!comercio) faltan.push('comercio');
+    if (!rubro) faltan.push('rubro');
+    if (!ciudad) faltan.push('ciudad');
+    fbq('trackCustom', 'FormularioIncompleto', {
+      content_name: faltan.join(', '),
+      content_category: 'Formulario mayoristas'
+    });
+    return;
+  }
+
   fbq('track', 'Lead', { content_name: 'Formulario mayoristas', content_category: rubro });
 }, true);
 

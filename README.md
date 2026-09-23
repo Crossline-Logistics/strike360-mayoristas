@@ -46,6 +46,7 @@ uno propio de la landing: los datos caen en el mismo lugar que los de Tienda Nub
 | `Lead` | Envío del formulario que pasa la validación; lleva el rubro en `content_category` |
 | `Contact` | Click en el mail mayorista (y en un enlace a WhatsApp, si alguna vez se agrega uno suelto) |
 | `ClickCTA` | Click en los tres botones que bajan al formulario. Evento propio, no es conversión |
+| `FormularioIncompleto` | Alguien apretó "Enviar por WhatsApp" y la página lo frenó. Evento propio, no es conversión: en `content_name` van los campos que faltaban, para ver si hay uno que traba a la gente. Se manda **una sola vez por carga de página**, con el primer tropiezo, así el que insiste cinco veces no infla el número |
 
 Los eventos se enganchan por delegación en `document` porque la página la renderiza React
 después de cargar. El `Lead` repite la validación del formulario (comercio, rubro y ciudad;
