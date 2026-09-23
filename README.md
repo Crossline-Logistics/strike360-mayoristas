@@ -27,10 +27,19 @@ El export de Claude Design no se sube tal cual. Sobre el `.dc.html` que sale del
    (`hero`, `hero-inner`, `hero-sub`, `card-why`, `stat`) que también se agregan a mano
    sobre el markup del export — el runtime de Claude Design las respeta.
 
-6. Hay que volver a poner `<script src="pixel.js"></script>` y `<script src="lead.js"></script>`
-   en el `<head>`, al lado del de `support.js`. El tracking de Meta y el envío del lead viven
-   en esos dos archivos justamente para que un export nuevo no se los lleve puestos: adentro
-   de ellos no hay que tocar nada.
+6. Hay que volver a poner en el `<head>`, al lado del `<script>` de `support.js`:
+
+   ```html
+   <link rel="icon" href="favicon.ico" sizes="any">
+   <link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32">
+   <link rel="apple-touch-icon" href="apple-touch-icon.png">
+   <script src="pixel.js"></script>
+   <script src="lead.js"></script>
+   ```
+
+   El tracking de Meta y el envío del lead viven en esos dos archivos justamente para que un
+   export nuevo no se los lleve puestos: adentro de ellos no hay que tocar nada. Los iconos
+   tampoco se regeneran, ya están en el repo.
 
 Los arreglos de **texto** conviene hacerlos en Claude Design y re-exportar, no acá, porque el
 próximo export los pisa.
@@ -90,3 +99,20 @@ El payload:
 ```
 
 `email` puede venir vacío: es el único campo opcional.
+
+
+## Favicon
+
+La "S" con manos del logo, en blanco sobre el naranja de la marca (`#f0561c`). El original que
+pasó Valentín viene en negro sobre fondo transparente, y así se volvía invisible en las pestañas
+en modo oscuro; el fondo es lo que se agregó, el dibujo es el mismo, recortado a su recuadro real
+y con un margen del 10% para que respire.
+
+| Archivo | Para qué |
+|---|---|
+| `favicon.ico` | 32×32. Lo que pide el navegador por su cuenta a `/favicon.ico` |
+| `favicon-32.png` | 32×32, el declarado en el `<head>` |
+| `apple-touch-icon.png` | 180×180, para cuando se agrega a la pantalla de inicio en iOS |
+| `icon-512.png` | 512×512, el original del que salen los demás; sirve de fuente si hay que regenerarlos |
+
+Se generaron con `sips` a partir del PNG de 512.
