@@ -62,43 +62,71 @@ después de cargar. El `Lead` repite la validación del formulario (comercio, ru
 el mail es opcional) para no contar envíos que la página rechaza.
 
 
-## El lead a n8n
+## El lead a n8n y los UTM hasta Kommo
 
-`lead.js` manda los datos del formulario al webhook de n8n (y de ahí a Kommo). **Falta la URL**:
-está como `WEBHOOK` al principio del archivo y mientras esté vacía no se envía nada, sin romper
-nada. `TOKEN` viaja en el cuerpo para que n8n descarte ruido; no es seguridad, cualquiera que
-abra el archivo lo ve.
+`lead.js` manda cada formulario al webhook de n8n
+(`https://webhook.crossline-logistics.com/webhook/strike-mayoristas-lead`), al workflow
+**`[Strike] Landing mayoristas → Kommo (UTM)`** del n8n de Crossline. `TOKEN` viaja en el cuerpo
+para que n8n descarte ruido; no es seguridad, cualquiera que abra el archivo lo ve.
 
 Cómo está pensado, según lo que decidió Valentín el 22/09:
 
-- El formulario **sigue abriendo WhatsApp igual**. `lead.js` no lo reemplaza ni lo toca: escucha
-  el envío y manda una copia por atrás.
+- El formulario **sigue abriendo WhatsApp igual**. `lead.js` no lo reemplaza: escucha el envío y
+  manda una copia por atrás.
 - Si el webhook está caído o rechaza el pedido, **la persona no se entera y llega a WhatsApp
   lo mismo**. Se prefiere perder el registro antes que el contacto.
 - Queda de un solo paso: son cuatro campos y tres obligatorios.
 
-**Lo que hay que saber del lado de n8n:** el envío usa `navigator.sendBeacon` con el cuerpo como
-`text/plain`. Es a propósito — así el navegador lo manda en segundo plano y el pedido no dispara
-el preflight de CORS, que es lo que suele romper estos envíos desde una página estática. La
-contra: **n8n recibe el cuerpo como texto, no como JSON ya parseado**, así que en el workflow hay
-que hacer `JSON.parse($json.body)` antes de usar los campos.
+**Por qué hay un código en el mensaje de WhatsApp (24/09).** La charla con el comercio pasa en
+WhatsApp, y el lead de Kommo que después se marca como vendido es el de ese chat, con el
+teléfono. Para que los UTM terminen en ese lead, cada envío genera un código corto
+(`ref. M-7K2QX`) que va a n8n con los UTM **y** al final del mensaje de WhatsApp. Cuando el
+mensaje entra a Kommo, Kommo le avisa a n8n; n8n encuentra el código y le carga a ese lead los
+UTM, el `fbclid`, Rubro, Localidad, "Marca de origen: Strike 360", la etiqueta
+`landing-mayoristas` y una nota con los datos del formulario. Cada código se usa una sola vez.
+
+El código se agrega al mensaje interceptando `window.open` desde `lead.js`, para no tocar el
+componente del `index.html` (que cada export pisa). Si un export cambia cómo se abre WhatsApp
+(otro dominio que `wa.me`, o sin `window.open`), el código deja de agregarse: probarlo después
+de cada export.
+
+Los UTM se leen de la URL al entrar y se guardan en `sessionStorage`, así sobreviven aunque la
+URL cambie antes de que la persona llene el formulario. Se mandan también `_fbc` y `_fbp`
+(las cookies del píxel), que sirven si algún día se le mandan a Meta las ventas cerradas.
+
+**Del lado de n8n:** el envío usa `navigator.sendBeacon` con el cuerpo como `text/plain`, para
+no disparar el preflight de CORS. n8n recibe el cuerpo como texto y lo parsea en el nodo
+"Validar formulario". Los formularios quedan en la data table `strike_mayoristas_formularios`;
+cuando se unen a un lead, la fila guarda `lead_id` y `unido`.
+
+**Del lado de Kommo** (cuenta `jcaime`) tiene que haber un webhook de mensajes entrantes
+apuntando al workflow. La URL no va acá: está en el nodo "Mensaje entrante de Kommo".
 
 El payload:
 
 ```json
 {
+  "ref": "M-7K2QX",
   "comercio": "Juguetería El Globo",
   "rubro": "Juguetería",
   "ciudad": "Córdoba, Córdoba",
   "email": "compras@elglobo.com.ar",
+  "utm_source": "meta", "utm_medium": "paid", "utm_campaign": "...", "utm_term": "...", "utm_content": "...",
+  "fbclid": "", "fbc": "", "fbp": "", "referrer": "",
   "origen": "landing-mayoristas",
   "url": "https://mayoristas.strike360.com.ar/",
   "enviado": "2026-09-22T18:02:33.500Z",
-  "token": ""
+  "token": "..."
 }
 ```
 
-`email` puede venir vacío: es el único campo opcional.
+`email` y todos los de origen pueden venir vacíos.
+
+**Parámetros de URL de los anuncios de Meta** (a nivel anuncio, campo "Parámetros de URL"):
+
+```
+utm_source=meta&utm_medium=paid&utm_campaign={{campaign.name}}&utm_term={{adset.name}}&utm_content={{ad.name}}
+```
 
 
 ## Favicon
